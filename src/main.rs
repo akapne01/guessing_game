@@ -12,17 +12,22 @@ fn main() {
     let secret_number: u32 = generate_a_random_number();
     println!("The secret number is {secret_number}");
 
-    println!("Please input your guess.");
-    let user_guess = get_user_input();
+    loop {
+        println!("Please input your guess.");
+        let user_guess = get_user_input();
 
-    // Print for debugging reasons. Remove on final version
-    println!("You guessed: {user_guess}");
+        // Print for debugging reasons. Remove on final version
+        println!("You guessed: {user_guess}");
 
-    // Compare the guess with secret number
-    match user_guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!"),
+        // Compare the guess with secret number
+        match user_guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
     }
 }
 
