@@ -10,7 +10,6 @@ fn main() {
     println!("Please eneter a random number from 1 to 100 inclusive");
 
     let secret_number: u32 = generate_a_random_number();
-    println!("The secret number is {secret_number}");
 
     loop {
         println!("Please input your guess.");
