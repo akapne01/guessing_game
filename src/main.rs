@@ -14,13 +14,24 @@ fn main() {
 
     loop {
         println!("Please input your guess.");
-        let user_guess = get_user_input();
+
+        let mut guess = String::new();
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+
+        // Handle invalid input by only accepting num as valid input and skipping all other types
+        // It ignores all errors
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         // Print for debugging reasons. Remove on final version
-        println!("You guessed: {user_guess}");
+        println!("You guessed: {guess}");
 
         // Compare the guess with secret number
-        match user_guess.cmp(&secret_number) {
+        match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
@@ -29,21 +40,6 @@ fn main() {
             }
         }
     }
-}
-
-/// Funtion that get's user input from the console and returns it as a string
-fn get_user_input() -> u32 {
-    let mut guess = String::new();
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
-
-    // Trim is required to strip the new line character \n or in Windows carriage return \r\n, becasue to enter answer, user needs to press enter
-    let guess: u32 = guess
-        .trim()
-        .parse()
-        .expect("Please type a number between 1 and 100, inclusive!");
-    guess
 }
 
 /// Returns a random number in range from 1 to 100, inclusive of both.
