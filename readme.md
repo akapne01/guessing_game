@@ -40,3 +40,7 @@ following import: `use rand::Rng;`.
 # Updating Creates
 - `cargo update` will ignore Cargo.lock file and figure out the latest versions that fit your specification in Cargo.toml.
 - Cargo will then write those versions to Cargo.lock file. 
+
+# Create documentation
+- `cargo doc --open` command will build documentation provided by all your dependencies locally and open it in your browser.
+- If you are interested in the other functionality the `rand` crate, generate the documentation using above command and click `rand` in the sidebar on the left. 
